@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Contact
+{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('{% static "images/cbgimage.avif" %}');
+        background-size: cover;
+        background-position: center;
+        margin: 0;
+        padding: 0;
+        color: #fff;
+    }
+
+    .navbar {
+        background-color: #fff !important;
+        color: #333;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    .contact-info {
+        margin-top: 30px;
+    }
+
+    .contact-info div {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .contact-info div img {
+        margin-right: 10px;
+        max-width: 40px;
+        max-height: 40px;
+    }
+
+    .contact-info div span {
+        flex: 1;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+    .contact-info div a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .contact-info div a:hover {
+        text-decoration: underline;
+    }
+
+    .customer-info input[type="text"],
+    .customer-info input[type="email"],
+    .customer-info input[type="phone"],
+    .customer-info textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .customer-info input[type="submit"] {
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .customer-info input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<div class="container">
+    <h1>Contact Us</h1>
+    <div class="contact-info">
+        <div>
+            <img src="{% static 'images/contyact.jpg' %}" alt="Phone">
+            <span>+25479198765</span>
+        </div>
+        <div>
+            <img src="{% static 'images/address.png' %}" alt="Address">
+            <span>10023-1030 Westlands, Nairobi, Kenya</span>
+        </div>
+        <div>
+            <img src="{% static 'images/gmail.png' %}" alt="Email">
+            <span><a href="mailto:info@example.com">info@example.com</a></span>
+        </div>
+    </div>
+    <div class="customer-info">
+        <form method="post" action="/contact/">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Your Name" class="form-control" id="name">
+            <input type="email" name="email" placeholder="Your Email" class="form-control" id="email">
+            <input type="phone" name="phone" placeholder="Enter Your Phone Number" class="form-control" id="phone">
+            <textarea name="desc" placeholder="Your Message" class="form-control" id="desc"></textarea>
+            <input type="submit" value="Send Message" class="btn btn-primary">
+        </form>
+    </div>
+</div>
+
+{% for message in messages %}
+<script>
+    alert('{{ message }}');
+</script>
+{% endfor %}
+{% endblock %}

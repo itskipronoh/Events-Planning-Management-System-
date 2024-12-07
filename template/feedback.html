@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Feedback
+{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('{% static "images/fbgimage.avif" %}');
+        background-size: cover;
+        background-position: center;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+
+    .navbar {
+        background-color: rgba(255, 255, 255, 0.9); /* Background color for navbar */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow to navbar */
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        margin-top: 0;
+        text-align: center;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+        transition: background-color 0.3s;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<div class="container">
+    <h2>Online Event Feedback Form</h2>
+    <form action="{% url 'feedback' %}" method="POST">
+        {% csrf_token %}
+        <label for="eventName">Event Name:</label>
+        <input type="text" id="eventName" name="eventName" required>
+        
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+        
+        <label for="platform">Platform/Website Used:</label>
+        <input type="text" id="platform" name="platform" required>
+        
+        <label for="overallExperience">Overall Experience:</label>
+        <select id="overallExperience" name="overallExperience" required>
+            <option value="">Select</option>
+            <option value="1">1 - Very Poor</option>
+            <option value="2">2 - Poor</option>
+            <option value="3">3 - Average</option>
+            <option value="4">4 - Good</option>
+            <option value="5">5 - Excellent</option>
+        </select>
+        
+        <label for="enjoyedMost">What did you enjoy the most about the event?</label>
+        <textarea id="enjoyedMost" name="enjoyedMost" required></textarea>
+        
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+{% for message in messages %}
+<script>
+    alert('{{ message }}');
+</script>
+{% endfor %}
+{% endblock %}

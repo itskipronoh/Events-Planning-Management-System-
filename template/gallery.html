@@ -1,0 +1,360 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Gallery
+{% endblock %}
+
+{% block content %}
+<style>
+   body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: rgba(177, 167, 173, 0.31);
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+header nav ul li {
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.hero {
+    background-image: url('{% static "images/cv1.jpg" %}'); 
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 50px;
+    margin: 0;
+}
+
+.hero p {
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+.hero .cta {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.section {
+    padding: 20px 20px;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #007BFF; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    font-weight: bold; 
+}
+
+.section p {
+    font-size: 18px;
+    margin-bottom: 40px;
+    color: #555; 
+    font-style: italic; 
+    line-height: 1.5; 
+}
+
+.events {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.event {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(33.333% - 40px);
+    box-sizing: border-box;
+    text-align: left;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.event:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.event img {
+    width: 100%;
+    height: 240px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: transform 0.3s, filter 0.3s;
+}
+
+.event img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+.event h3 {
+    margin-top: 0;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.event h3:hover {
+    color: #007BFF;
+    transform: scale(1.1);
+}
+
+.event p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.about,
+.testimonials {
+    background-color: #f9f9f9;
+}
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.event .know-more {
+    font-size: 14px;
+    color: #007BFF;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.event .know-more-content {
+    display: none;
+    margin-top: 10px;
+}
+
+        
+    </style>
+
+<div class="container">
+    <section id="events" class="section">
+        <h2>Events Gallery</h2>
+        <p>Check out our excited recent events</p>
+        <div class="events">
+            <div class="event">
+                <img src="{% static 'images/birthday1.jpg' %}" alt="Event 1 Image">
+                <h3>Birthday Celebration </h3>
+                <p>"Celestial Soiree: A Stellar Birthday Celebration" invites guests to embark on a cosmic journey to celebrate [Name]'s special day in celestial style</p>
+                <p>Date: June 15, 2024</p>
+                <p>Location: ABC Hall</p>
+                <p class="know-more">Know More</p>
+                <div class="know-more-content">
+                    <p>"Celestial Soiree: A Stellar Birthday Celebration" invites guests to embark on a cosmic journey to celebrate [Name]'s special day in celestial style. Featuring a mesmerizing blend of celestial decor, celestial-inspired cuisine, live entertainment, and enchanting activities, this event promises an evening filled with magic and wonder under the twinkling night sky. Join us as we raise a toast to [Name] amidst the stars and create memories that will last a lifetime.</p>
+                </div>
+            </div>
+            <div class="event">
+                <img src="{% static 'images/abc.jpg' %}" alt="Event 2 Image">
+                <h3>Marriage Celebration</h3>
+                <p>"Eternal Unity: A Celebration of Love and Commitment"</p>
+                <p>Date: July 20, 2024</p>
+                <p>Location: XYZ Garden</p>
+                <p class="know-more">Know More</p>
+                <div class="know-more-content">
+                    <p>To capture the essence of a marriage celebration orchestrated by an event planner, highlighting the beauty, romance, and significance of the occasion. Step into a world where love reigns supreme and every moment is infused with joy, as we come together to celebrate the union of [Couple's Names]. Join us for an exquisite evening of romance, elegance, and unforgettable memories as we commemorate their journey towards eternal unity.</p>
+                </div>
+            </div>
+            <div class="event">
+                <img src="{% static 'images/engage.jpg' %}" alt="Event 3 Image">
+                <h3>Engagement Event </h3>
+                <p>"A Promise of Forever: An Enchanting Engagement Celebration"</p>
+                <p>Date: August 10, 2024</p>
+                <p>Location: PQR Banquet Hall</p>
+                <p class="know-more">Know More</p>
+                <div class="know-more-content">
+                    <p>The evening begins with a heartwarming announcement, as [Couple's Names] share their love story and the journey that has led them to this momentous occasion. Surrounded by family and friends, they exchange vows of commitment and devotion, sealing their promise of forever with a tender embrace.
+
+                        As the celebration continues, guests are treated to a delectable array of culinary delights, expertly crafted by our team of culinary artisans. From gourmet hors d'oeuvres to signature cocktails, each dish is a celebration of love and a testament to the couple's unique bond.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="events" class="section">
+        
+        
+        <div class="events">
+            <div class="event">
+                <img src="{% static 'images/convacation.webp' %}" alt="Event 1 Image">
+                <h3>Convacation </h3>
+                <p> "Milestone Achieved: A Celebration of Success at [University Name] Convocation"</p>
+                <p>Date: June 15, 2024</p>
+                <p>Location: ABC Hall</p>
+                <p class="know-more">Know More</p>
+                <div class="know-more-content">
+                    <p> To capture the essence of a convocation event organized by an event planner at your university, highlighting the significance, pride, and sense of accomplishment that accompanies this milestone.
+                        Join us as we gather to commemorate the culmination of years of hard work, dedication, and academic achievement at the [University Name] Convocation. "Milestone Achieved" invites graduates, faculty, family, and friends to come together in celebration of this momentous occasion and the bright futures that lie ahead. </p>
+                </div>
+            </div>
+            <div class="event">
+                <img src="{% static 'images/reception.jpeg' %}" alt="Event 2 Image">
+                <h3>Marriage Reception Event</h3>
+                <p>"Forever Begins: A Spectacular Marriage Reception Celebration"</p>
+                <p>Date: July 20, 2024</p>
+                <p>Location: XYZ Garden</p>
+                <p class="know-more">Know More</p>
+                <div class="know-more-content">
+                    <p>Welcome to "Forever Begins," where love takes center stage and every moment is infused with joy, elegance, and unforgettable memories. Join us as we come together to celebrate the union of [Couple's Names] in a marriage reception event that promises to be as spectacular as their love story.
+                        The celebration begins with a grand entrance by the newlyweds, as they are welcomed with cheers and applause from family and friends. Against the backdrop of music and laughter, [Couple's Names] take to the dance floor for their first dance as husband and wife, a moment of pure magic and romance that sets the tone for the evening ahead.
+                    </p>
+                </div>
+            </div>
+            <div class="event">
+                <img src="{% static 'images/concert2.jpeg' %}" alt="Event 3 Image">
+                <h3>Live Concert Event </h3>
+                <p> "Euphoria Unleashed: A Night of Music, Lights, and Unforgettable Memories"</p>
+                <p>Date: August 10, 2024</p>
+                <p>Location: PQR Banquet Hall</p>
+                <p class="know-more">Know More</p>
+                <div class="know-more-content">
+                    <p>Get ready to experience the ultimate musical extravaganza as [Event Management System] proudly presents "Euphoria Unleashed"! Join us for an electrifying night of live music, dynamic performances, and immersive entertainment that will leave you breathless and craving more.
+                        So grab your friends, mark your calendars, and prepare to lose yourself in the music at "Euphoria Unleashed"! Whether you're a die-hard fan or simply looking for a night of fun and excitement, this is one concert event you won't want to miss. </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section id="events" class="section">
+        
+        <div class="events">
+            <div class="event">
+                <img src="{% static 'images/OIP.jpeg' %}" alt="Event 1 Image">
+                <h3>Destination wedding Celebration </h3>
+                <p>"Paradise Awaits: An Exquisite Destination Event Experience"</p>
+                <p>Date: feb 15, 2024</p>
+                <p>Location: CVR Hall</p>
+                <p class="know-more">Know More</p>
+                <div class="know-more-content">
+                    <p>Escape to a world of luxury, adventure, and unforgettable moments with "Paradise Awaits," a destination event brought to you by [Event Management System]. Join us as we whisk you away to the breathtaking [destination], where every detail has been meticulously planned to provide you with an unparalleled experience of beauty, relaxation, and celebration.</p>
+                </div>
+            </div>
+            <div class="event">
+                <img src="{% static 'images/bacehlor 1.jpg' %}" alt="Event 2 Image">
+                <h3>Bachleor Party Event</h3>
+                <p>"The Ultimate Send-Off: A Legendary Bachelor Party Extravaganza"</p>
+                <p>Date: mar 20, 2024</p>
+                <p>Location: XYZ Garden</p>
+                <p class="know-more">Know More</p>
+                <div class="know-more-content">
+                    <p>Get ready for a night of unparalleled excitement, camaraderie, and unforgettable memories as [Event Management System] presents "The Ultimate Send-Off," the definitive bachelor party experience. Join us as we celebrate [Groom's Name]'s final days of singlehood in style, with an epic night that pulls out all the stops and guarantees an adventure like no other.</p>
+                </div>
+            </div>
+            <div class="event">
+                <img src="{% static 'images/inaugration.jpg' %}" alt="Event 3 Image">
+                <h3>Home Inaugration Event </h3>
+                <p>"Welcome Home: A Grand Home Inauguration Celebration"
+
+                </p>
+                <p>Date: Mar 20, 2024</p>
+                <p>Location: PQR Banquet Hall</p>
+                <p class="know-more">Know More</p>
+                <div class="know-more-content">
+                    <p>The celebration begins with a formal ribbon-cutting ceremony, symbolizing the opening of the home and the start of countless cherished memories. [Homeowner's Name/Family Name] will share a few heartfelt words, expressing their gratitude and excitement for this new chapter in their lives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="events" class="section">
+        
+        <div class="events">
+            <div class="event">
+                <img src="{% static 'images/wallpaper.jpg' %}" alt="Event 1 Image">
+                <h3>An Event that's make us happy </h3>
+                <p>"A Corporate Conference for the Future"</p>
+                <p>Date: Apr 20, 2024</p>
+                <p>Location: ABC Hall</p>
+                <p class="know-more">Know More</p>
+                <div class="know-more-content">
+                    <p>Join industry leaders and innovators at "Innovate 2024," where groundbreaking ideas meet actionable insights. This premier corporate conference offers a dynamic blend of keynote speeches, panel discussions, and interactive workshops designed to inspire and empower. Network with peers, explore the latest trends, and gain valuable knowledge to drive your business forward. Hosted at the state-of-the-art [venue], "Innovate 2024" is the must-attend event for professionals ready to lead the future.</p>
+                </div>
+            </div>
+            <div class="event">
+                <img src="{% static 'images/lovethe.jpeg' %}" alt="Event 2 Image">
+                <h3>Marriage Celebration</h3>
+                <p>"Eternal Unity: A Celebration of Love and Commitment"</p>
+                <p>Date: July 20, 2023</p>
+                <p>Location: XYZ Garden</p>
+                <p class="know-more">Know More</p>
+                <div class="know-more-content">
+                    <p> The celebration begins with a grand entrance by the newlyweds, as they are welcomed with cheers and applause from family and friends. Against the backdrop of music and laughter, [Couple's Names] take to the dance floor for their first dance as husband and wife, a moment of pure magic and romance that sets the tone for the evening ahead.</p>
+                </div>
+            </div>
+            <div class="event">
+                <img src="{% static 'images/bd2.jpeg' %}" alt="Event 3 Image">
+                <h3>Birthday Event </h3>
+                <p>A memoriable event </p>
+                <p>Date: Apr 14, 2024</p>
+                <p>Location: PQR Banquet Hall</p>
+                <p class="know-more">Know More</p>
+                <div class="know-more-content">
+                    <p>Step into a world where the stars align to celebrate [Name]'s extraordinary journey around the sun! Join us for an enchanting evening filled with celestial wonders and celestial delights as we commemorate [his/her] special day in style.
+
+                        Set against the backdrop of a shimmering night sky, the venue transforms into a celestial paradise, adorned with twinkling lights, iridescent decor, and ethereal touches at every turn. Guests will be greeted with personalized celestial-themed invitations, inviting them on a cosmic adventure like no other.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    // JavaScript to toggle visibility of "Know More" content
+    const knowMoreButtons = document.querySelectorAll('.know-more');
+    knowMoreButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const knowMoreContent = button.nextElementSibling;
+            knowMoreContent.style.display = knowMoreContent.style.display === 'block' ? 'none' : 'block';
+        });
+    });
+</script>
+{% endblock %}

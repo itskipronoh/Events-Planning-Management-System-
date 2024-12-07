@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Booking 
+{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar {
+        margin-bottom: 0;
+    }
+
+    .booking-header {
+        background-color: #F08080; 
+        padding: 30px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 93vh; 
+        width: 100%;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row; /* Arrange items horizontally */
+    }
+
+    .card {
+        max-width: 480px;
+        width: 100%;
+        padding: 30px;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .booking-title {
+        color: #FF4500;
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .form-group label {
+        color: #333;
+    }
+
+    .form-control {
+        background-color: rgba(255, 255, 255, 0.9);
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+
+    .btn-primary {
+        background-color: #FF6347; 
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-primary:hover {
+        background-color: #FF4500; 
+    }
+
+    .booking-image {
+        margin-right: 50px; /* Adjust margin to create space between image and form */
+    }
+
+    .booking-image img {
+        width: 370px; /* Adjust image width as needed */
+        border-radius: 50%; /* Make the image round */
+        border: 2px solid black; /* Add border */
+        height: 350px;
+    }
+
+</style>
+
+<div class="booking-header">
+    <div class="container">
+        <div class="booking-image">
+            <img src="{% static 'images/bookevent.png' %}" alt="Booking Image">
+        </div>
+        <div class="card">
+            <h1 class="booking-title">Book Your Events</h1>
+
+            <!-- Display form errors if any -->
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <ul>
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_cus_name">Name:</label>
+                    {{ form.cus_name }}
+                    <!-- Show field-specific error if any -->
+                    {% if form.cus_name.errors %}
+                        <div class="text-danger">
+                            {{ form.cus_name.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="id_cus_ph">Phone:</label>
+                    {{ form.cus_ph }}
+                    {% if form.cus_ph.errors %}
+                        <div class="text-danger">
+                            {{ form.cus_ph.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="id_name">Event:</label>
+                    {{ form.name }}
+                    {% if form.name.errors %}
+                        <div class="text-danger">
+                            {{ form.name.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="id_booking_date">Booking Date:</label>
+                    {{ form.booking_date }}
+                    {% if form.booking_date.errors %}
+                        <div class="text-danger">
+                            {{ form.booking_date.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="id_members_attending">Number of Members Attending:</label>
+                    {{ form.members_attending }}
+                    {% if form.members_attending.errors %}
+                        <div class="text-danger">
+                            {{ form.members_attending.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label>Approximate Amount:</label>
+                    <p id="approximate-amount">{{ approximate_amount }}</p>
+                </div>
+                <button type="submit" class="btn btn-primary">Book Now</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const membersInput = document.getElementById('id_members_attending');
+        const approximateAmountElement = document.getElementById('approximate-amount');
+
+        function updateApproximateAmount() {
+            const members = parseInt(membersInput.value) || 0;
+            const costPerMember = 50; // Example cost per member
+            const approximateAmount = members * costPerMember;
+            approximateAmountElement.textContent = approximateAmount;
+        }
+
+        membersInput.addEventListener('input', updateApproximateAmount);
+        updateApproximateAmount(); // Initial call to set the value
+    });
+ 
+</script>
+    {% for message in messages %}
+    <script>
+        alert('{{ message }}');
+    </script>
+    {% endfor %}
+{% endblock %}
